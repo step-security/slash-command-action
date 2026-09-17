@@ -5,8 +5,14 @@ module.exports = {
   testMatch: ["**/*.test.ts"],
   testRunner: "jest-circus/runner",
   transform: {
-    "^.+\\.ts$": "ts-jest",
+    "^.+\\.(ts|js)$": ["ts-jest", { tsconfig: { allowJs: true }, diagnostics: false }],
   },
+  moduleNameMapper: {
+    '^undici$': '<rootDir>/__mocks__/undici.js',
+  },
+  transformIgnorePatterns: [
+    "/node_modules/(?!(@octokit|universal-user-agent|before-after-hook|content-type|before-after-hook|@ungap/structured-clone))",
+  ],
   verbose: true,
 };
 
